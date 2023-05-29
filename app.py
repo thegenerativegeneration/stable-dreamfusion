@@ -19,11 +19,10 @@ opt.exp_start_iter = opt.exp_start_iter or 0
 opt.exp_end_iter = opt.exp_end_iter or opt.iters
 
 # Parameters for low memory
-opt.fp16 = True
+opt.O = True
 opt.vram_O = True
 
 opt.dir_text = True
-opt.cuda_ray = True
 # opt.lambda_entropy = 1e-4
 # opt.lambda_opacity = 0
 
