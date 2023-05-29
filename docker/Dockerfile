@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
 
 # Remove any third-party apt sources to avoid issues with expiring keys.
 RUN rm -f /etc/apt/sources.list.d/*.list
@@ -25,13 +25,8 @@ RUN apt-get install -y \
 
 # Create a working directory
 RUN mkdir /app
-WORKDIR /app
 
-RUN cd /app
-RUN git clone https://github.com/ashawkey/stable-dreamfusion.git
-
-
-RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+RUN cd /app && git clone https://github.com/thegenerativegeneration/stable-dreamfusion.git
 
 WORKDIR /app/stable-dreamfusion
 
@@ -45,9 +40,6 @@ RUN pip3 install git+https://github.com/openai/CLIP.git
 RUN bash scripts/install_ext.sh
 
 
-
-
-
 # Set the default command to python3
-#CMD ["python3"]
+#CMD ["python3", "app.py"]
 

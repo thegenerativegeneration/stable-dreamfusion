@@ -24,7 +24,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 import torch.distributed as dist
 import torchvision.transforms.functional as TF
-from torchmetrics import PearsonCorrCoef
+from torchmetrics import PearsonCorrcoef
 
 from rich.console import Console
 from torch_ema import ExponentialMovingAverage
@@ -199,7 +199,7 @@ class Trainer(object):
         self.criterion = criterion
 
         if self.opt.images is not None:
-            self.pearson = PearsonCorrCoef().to(self.device)
+            self.pearson = PearsonCorrcoef().to(self.device)
 
         if optimizer is None:
             self.optimizer = optim.Adam(self.model.parameters(), lr=0.001, weight_decay=5e-4) # naive adam
