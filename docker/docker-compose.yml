@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  stable-dreamfusion:
+    image: wawa9000/stable-dreamfusion
+    ports:
+      - "7860:7860"
+    volumes:
+      - type: bind
+        source: ../pretrained/omnidata
+        target: /app/stable-dreamfusion/pretrained/omnidata
+      - type: bind
+        source:  ../pretrained/zero123/105000.ckpt
+        target: /app/stable-dreamfusion/pretrained/zero123/105000.ckpt
+      - type: bind
+        source: /home/ph/.cache/torch/hub/checkpoints
+        #source: ~/.cache/torch/hub/checkpoints
+        target: /root/.cache/torch/hub/checkpoints
+    #runtime: nvidia
+    entrypoint: ["python3", "app.py"]
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          memory: 16Gb
+          devices:
+              - driver: nvidia
+                count: 1
+                capabilities: [ gpu ]
+
+
+networks:
+  app_network:
+    driver: bridge
+

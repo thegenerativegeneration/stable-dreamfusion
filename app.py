@@ -76,7 +76,7 @@ with gr.Blocks(css=".gradio-container {max-width: 512px; margin: auto;}") as dem
     iters = gr.Slider(label="Iters", minimum=1000, maximum=20000, value=5000, step=100)
     seed = gr.Slider(label="Seed", minimum=0, maximum=2147483647, step=1, randomize=True)
     # allow multiple selections for guidance
-    guidance_type = gr.Dropdown(choices=guidance_combinations_labels, label="Modality",  type="index", default=0)
+    guidance_type = gr.Dropdown(choices=guidance_combinations_labels, label="Modality",  type="index", value=guidance_combinations_labels[0])
     workspace = gr.Textbox(label="Workspace (output folder)", max_lines=1, value="workspace")
 
     button = gr.Button('Generate')
