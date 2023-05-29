@@ -6,7 +6,7 @@ RUN rm -f /etc/apt/sources.list.d/*.list
 RUN apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive TZ=Europe/MADRID apt-get install -y tzdata
-ARG STABLE_DREAMFUSION_COMMIT_HASH="feature/gradio"
+ARG STABLE_DREAMFUSION_COMMIT_HASH="20e4214"
 ARG NVDIFFRAST_COMMIT_HASH="335cfa6"
 ARG TINY_CUDA_NN_COMMIT_HASH="a77dc53"
 ARG CLIP_COMMIT_HASH="a9b1bf5"
@@ -30,7 +30,7 @@ RUN apt-get install -y \
 # Create a working directory
 RUN mkdir /app
 
-RUN cd /app && git clone  https://github.com/thegenerativegeneration/stable-dreamfusion.git
+RUN cd /app && git clone https://github.com/thegenerativegeneration/stable-dreamfusion.git
 
 WORKDIR /app/stable-dreamfusion
 
