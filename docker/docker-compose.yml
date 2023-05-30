@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  stable-dreamfusion:
+    image: wawa9000/stable-dreamfusion
+    ports:
+      - "7860:7860"
+    environment:
+      - HUGGINGFACE_HUB_CACHE=/root/.cache/huggingface/hub
+    volumes:
+      - type: bind
+        source: ../pretrained/omnidata
+        target: /app/stable-dreamfusion/pretrained/omnidata
+      - type: bind
+        source:  ../pretrained/zero123/105000.ckpt
+        target: /app/stable-dreamfusion/pretrained/zero123/105000.ckpt
+      - type: bind
+        source: /home/ph/.cache/huggingface/hub
+        #source: ~/.cache/torch/hub/checkpoints
+        target: /root/.cache/huggingface/hub
+    #runtime: nvidia
+    entrypoint: ["python3", "app.py"]
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          memory: 16Gb
+          devices:
+              - driver: nvidia
+                count: 1
+                capabilities: [ gpu ]
+
+
+networks:
+  app_network:
+    driver: bridge
+

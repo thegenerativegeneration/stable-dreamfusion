@@ -1,5 +1,8 @@
 #! /bin/bash
-CUDA_VISIBLE_DEVICES=1 python main.py -O --text "a DSLR photo of a delicious hamburger" --workspace trial_hamburger --iters 5000
+
+set -e
+
+CUDA_VISIBLE_DEVICES=0 python main.py -O --text "a DSLR photo of a delicious hamburger" --workspace trial_hamburger --iters 5000
 CUDA_VISIBLE_DEVICES=1 python main.py -O --text "a DSLR photo of a delicious hamburger" --workspace trial2_hamburger --dmtet --iters 5000 --init_with trial_hamburger/checkpoints/df.pth
 
 CUDA_VISIBLE_DEVICES=1 python main.py -O --text "a highly detailed stone bust of Theodoros Kolokotronis" --workspace trial_stonehead --iters 5000

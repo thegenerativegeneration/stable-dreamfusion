@@ -10,11 +10,15 @@ opencv-python
 imageio
 imageio-ffmpeg
 
-torch
+# torch==2.0.1
+# torchvision==0.15.2
+# torchaudio==2.0.2
 torch-ema
 einops
 tensorboard
 tensorboardX
+torchmetrics==0.11.4
+gradio
 
 # for gui
 dearpygui
@@ -24,7 +28,7 @@ dearpygui
 
 # for stable-diffusion
 huggingface_hub
-diffusers >= 0.9.0
+diffusers==0.16.1
 accelerate
 transformers
 
